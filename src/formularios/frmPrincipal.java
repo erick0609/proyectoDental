@@ -611,7 +611,9 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
         // TODO add your handling code here:
-        
+        frmServicios fServicios = new frmServicios();
+        jdContenedor.add(fServicios);
+        fServicios.show();
     }//GEN-LAST:event_btnServiciosActionPerformed
 
     private void btnTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTratamientosActionPerformed

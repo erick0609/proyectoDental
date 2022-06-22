@@ -20,7 +20,7 @@ public class servicios {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("insert into " + " servicios(IdServicio, nombreServicio, descripcion)" + "values (?,?,?)");
+            con.getConnection().prepareStatement("insert into " + " servicios(IdServicio, nomServicio, descripcion)" + "values (?,?,?)");
             
             pstm.setString(1, idSer);
             pstm.setString(2, nSer);
@@ -69,8 +69,8 @@ public class servicios {
             
             while (res.next())
             {
-                String estIdSer = res.getString("IdServicio");
-                String estNomSer = res.getString("nombreServicio");
+                String estIdSer = res.getString("idServicio");
+                String estNomSer = res.getString("nomServicio");
                 String estDes = res.getString("descripcion");
                                 
                 data [i][0]=estIdSer;
@@ -140,7 +140,7 @@ public class servicios {
         
         DefaultTableModel res= new DefaultTableModel();
         res.addColumn("IdServicio");
-        res.addColumn("nombreServicio");
+        res.addColumn("nomServicio");
         res.addColumn("Descripción");        
   
     try

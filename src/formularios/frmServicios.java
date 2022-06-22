@@ -434,26 +434,12 @@ public class frmServicios extends javax.swing.JInternalFrame {
             {                                  
                 con = new bdConexion();
                 PreparedStatement pstm1=(PreparedStatement)
-                con.getConnection().prepareStatement("SELECT MAX(IdServicio) as codigo FROM servicios");
+                con.getConnection().prepareStatement("SELECT MAX(idServicio) as codigo FROM servicios");
                 ResultSet res1=pstm1.executeQuery();
 
                 res1.first();
                 String v =res1.getString("codigo");
-
-                int cod=(Integer.parseInt(v))+1;
-
-                if ( cod<10)
-                {
-                    txtCodigoServicio.setText("00"+cod);
-                }
-                else if(cod<100)
-                {
-                    txtCodigoServicio.setText("0"+cod);
-                }
-                else
-                {
-                    txtCodigoServicio.setText(v);
-                }
+                txtCodigoServicio.setText(v);
 
             res1.close();
             }
