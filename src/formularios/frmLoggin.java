@@ -31,6 +31,7 @@ public class frmLoggin extends javax.swing.JFrame {
         initComponents();
         //editado erick
         //prueba 2
+        //prueba3
     }
 
     /** This method is called from within the constructor to
