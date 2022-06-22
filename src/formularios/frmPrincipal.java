@@ -618,7 +618,9 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTratamientosActionPerformed
         // TODO add your handling code here:
-       
+        frmTratamientos fTratamientos = new frmTratamientos();
+        jdContenedor.add(fTratamientos);
+        fTratamientos.show();
     }//GEN-LAST:event_btnTratamientosActionPerformed
 
     private void btnEspecialistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecialistaActionPerformed
@@ -795,6 +797,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
    
         
