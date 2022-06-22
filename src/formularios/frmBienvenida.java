@@ -12,6 +12,7 @@ public class frmBienvenida extends javax.swing.JFrame implements Runnable{
 
     public frmBienvenida() {
         initComponents();
+        
     }
 
     //metodo para llenar el jProgresbar
