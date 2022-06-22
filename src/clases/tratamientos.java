@@ -20,7 +20,7 @@ public class tratamientos {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("insert into " + " tratamientos(IdTratamiento, nombreTratamiento, descripcion, tarifa, IdServicio)" + "values (?,?,?,?,?)");
+            con.getConnection().prepareStatement("insert into " + " tratamientos(idTratamiento, nombreTratamiento, descripcion, tarifa, IdServicio)" + "values (?,?,?,?,?)");
             
             pstm.setString(1, idTra);
             pstm.setString(2, nomTra);
@@ -45,7 +45,7 @@ public class tratamientos {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamientos");//cuenta el total de registros de la tabla tratamientos
+            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamiento");//cuenta el total de registros de la tabla tratamientos
             ResultSet res=pstm.executeQuery();
             res.next();
             registros = res.getInt("total");
@@ -64,7 +64,7 @@ public class tratamientos {
         {
             PreparedStatement pstm=(PreparedStatement)
             //con.getConnection().prepareStatement("SELECT * FROM tratamientos ORDER BY IdTratamiento");
-            con.getConnection().prepareStatement("SELECT t.*, s.nombreServicio FROM tratamientos t INNER JOIN servicios s ON t.IdServicio=s.IdServicio ORDER BY IdTratamiento;");
+            con.getConnection().prepareStatement("SELECT t.*, s.nomServicio FROM tratamiento t INNER JOIN servicios s ON t.IdServicio=s.IdServicio ORDER BY IdTratamiento;");
             ResultSet res=pstm.executeQuery();
             
             int i=0;
@@ -72,16 +72,14 @@ public class tratamientos {
             while (res.next())
             {
                 String estIdTra = res.getString("IdTratamiento");
-                String estNomTra = res.getString("nombreTratamiento");
                 String estDes = res.getString("descripcion");
-                String estTar = res.getString("tarifa");
-                String estSer = res.getString("nombreServicio");
+                String estTar = res.getString("codTarifa");
+                String estSer = res.getString("nomServicio");
                                 
                 data [i][0]=estIdTra;
-                data [i][1]=estNomTra;
-                data [i][2]=estDes;
-                data [i][3]=estTar;
-                data [i][4]=estSer;
+                data [i][1]=estDes;
+                data [i][2]=estTar;
+                data [i][3]=estSer;
                                                              
                 i++;//retorna el ciclo hasta finalizar
                 
@@ -103,7 +101,7 @@ public class tratamientos {
         {
             int rows_update=0;
             PreparedStatement pstm=(PreparedStatement) 
-            con.getConnection().prepareStatement("DELETE tratamientos.* FROM tratamientos WHERE IdTratamiento='"+codigo+"'");
+            con.getConnection().prepareStatement("DELETE tratamiento.* FROM tratamiento WHERE IdTratamiento='"+codigo+"'");
             //con.conexion.prepareStatement("DELETE tratamientos.* FROM tratamientos WHERE IdTratamiento='"+codigo+"'");
             rows_update=pstm.executeUpdate();
             
@@ -129,7 +127,7 @@ public class tratamientos {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("UPDATE tratamientos SET nombreTratamiento='"+ntra+"' , descripcion='"+des+"', tarifa='"+tar+"', IdServicio='"+ser+"' WHERE IdTratamiento='"+idtra+"'");
+            con.getConnection().prepareStatement("UPDATE tratamiento SET nombreTratamiento='"+ntra+"' , descripcion='"+des+"', tarifa='"+tar+"', IdServicio='"+ser+"' WHERE IdTratamiento='"+idtra+"'");
             pstm.executeUpdate();
             pstm.close();
         }
@@ -146,14 +144,13 @@ public class tratamientos {
         
         DefaultTableModel res= new DefaultTableModel();
         res.addColumn("IdTratamiento");
-        res.addColumn("nombreTratamiento");
         res.addColumn("Descripción");        
-        res.addColumn("Tarifa");        
-        res.addColumn("Servicio");        
+        res.addColumn("codTarifa");        
+        res.addColumn("idServicio");        
   
     try
     {
-        String sql = "SELECT * FROM tratamientos WHERE "+campo+" like ?";        
+        String sql = "SELECT * FROM tratamiento WHERE "+campo+" like ?";        
         PreparedStatement ps = con.getConnection().prepareStatement(sql);        
         ps.setString(1, v);
         ResultSet resultado = ps.executeQuery();
@@ -173,11 +170,10 @@ public class tratamientos {
             while(resultado.next())
             {
                 res.addRow(new Object[]{});
-                res.setValueAt(resultado.getString("IdTratamiento"), x, 0);
-                res.setValueAt(resultado.getString("nombreTratamiento"), x, 1);                
-                res.setValueAt(resultado.getString("descripcion"), x, 2);
-                res.setValueAt(resultado.getString("tarifa"), x, 3);
-                res.setValueAt(resultado.getString("IdServicio"), x, 4);
+                res.setValueAt(resultado.getString("IdTratamiento"), x, 0);               
+                res.setValueAt(resultado.getString("descripcion"), x, 1);
+                res.setValueAt(resultado.getString("codTarifa"), x, 2);
+                res.setValueAt(resultado.getString("idServicio"), x, 3);
                 
                 
                 x++;
