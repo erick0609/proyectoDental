@@ -30,6 +30,7 @@ public class frmLoggin extends javax.swing.JFrame {
     public frmLoggin() throws SQLException {
         initComponents();
         //editado erick
+        //prueba 2
     }
 
     /** This method is called from within the constructor to
