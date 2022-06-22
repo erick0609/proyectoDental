@@ -3,6 +3,7 @@ package formularios;
 
 import clases.bdConexion;
 import clases.loggin;
+import formularios.frmPrincipal;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
