@@ -45,7 +45,6 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     Object[][] dtEspecialista;   
     Object[][] dtMedicamentos;
     
-    
     int fila=-1;
     String fechaActual=null;
     
@@ -1534,6 +1533,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
                         ci = resul.getString("ciudad");
                         tp = resul.getString("telefono1");
                         cp = resul.getString("telefono2");
+                        ep = resul.getString("edad");
                     }
                     resul.close();
                 }
