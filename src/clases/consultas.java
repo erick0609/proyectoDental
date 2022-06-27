@@ -327,7 +327,7 @@ public class consultas {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT count(1) as total FROM especialista");//cuenta el total de registros de la tabla especialista
+            con.getConnection().prepareStatement("SELECT count(1) as total FROM especialistas");//cuenta el total de registros de la tabla especialista
             ResultSet res=pstm.executeQuery();
             res.next();
             registros = res.getInt("total");
@@ -345,7 +345,7 @@ public class consultas {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT IdEspecialista, nombres, apellidos FROM especialista ORDER BY IdEspecialista");
+            con.getConnection().prepareStatement("SELECT * FROM especialistas ORDER BY IdEspecialista");
             ResultSet res=pstm.executeQuery();
             
             int i=0;
@@ -353,7 +353,7 @@ public class consultas {
             while (res.next())//Bucle para llenar la matriz de datos
             {
                 String iE = res.getString("IdEspecialista");
-                String nE = res.getString("nombres")+" "+res.getString("apellidos");
+                String nE = res.getString("nombres")+" "+res.getString("aPaterno")+" "+res.getString("aMaterno");
                 
                                                                                                              
                 //llenamos la matriz con los valores encontrados de la consulta
