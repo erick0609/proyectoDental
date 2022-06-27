@@ -271,7 +271,7 @@ public class consultas {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamiento");//cuenta el total de registros de la tabla tratamientos
+            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamiento WHERE IdServicio = '"+codSer+"'");//cuenta el total de registros de la tabla tratamientos
             ResultSet res=pstm.executeQuery();
             res.next();
             registros = res.getInt("total");
