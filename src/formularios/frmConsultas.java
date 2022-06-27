@@ -45,6 +45,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     Object[][] dtEspecialista;   
     Object[][] dtMedicamentos;
     
+    
     int fila=-1;
     String fechaActual=null;
     
