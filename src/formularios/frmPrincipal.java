@@ -633,7 +633,9 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnRealizarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarConsultaActionPerformed
         // TODO add your handling code here:
-        
+        frmConsultas fEspecialista = new frmConsultas();
+        jdContenedor.add(fEspecialista);
+        fEspecialista.show();
 
     }//GEN-LAST:event_btnRealizarConsultaActionPerformed
 

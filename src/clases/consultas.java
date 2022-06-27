@@ -93,11 +93,11 @@ public class consultas {
     public Object[][]getDatosPacientes()
     {
         int registros=0;
-        //obtener la cantidad de registros que hay en la tabla paciente
+        //obtener la cantidad de registros que hay en la tabla citas
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT count(1) as total FROM paciente");//cuenta el total de registros de la tabla pacientes
+            con.getConnection().prepareStatement("SELECT count(1) as total FROM paciente");//cuenta el total de registros de la tabla paciente
             ResultSet res=pstm.executeQuery();
             res.next();
             registros = res.getInt("total");
@@ -108,32 +108,31 @@ public class consultas {
          System.out.println(e);   
         }
         
-        Object[][] data=new String [registros][3];
-                
+        Object[][] data=new String [registros][4];
+        
         //realizamos la consulta sql y llenamos los datos del Object
         
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT IdPaciente, nombres, apellidos FROM  paciente ORDER BY IdPaciente");
+            con.getConnection().prepareStatement("SELECT idPaciente, numDocumento, concat(nombres,' ',aPaterno,' ',aMaterno) as nombrePa, telefono FROM paciente WHERE estado = 1 ORDER BY idPaciente ASC");
             ResultSet res=pstm.executeQuery();
             
             int i=0;
             
-            while (res.next())//Bucle para recorrer la consulta y colocar los datos del paciente en la matriz
+            while (res.next())
             {
-                String ip = res.getString("IdPaciente");
-                String np = res.getString("nombres")+" "+res.getString("apellidos");
-                //String dir= res.getString("direccion");
+                String estIdP = res.getString("idPaciente");
+                String estNumDoc = res.getString("numDocumento");
+                String estNomP = res.getString("nombrePa");
+                String estT = res.getString("telefono");                           
                 
-                                               
-                                              
-                //llenamos la matriz con los valores encontrados de la consulta
-                data [i][0]=ip;
-                data [i][1]=np;
-                //data [i][2]=dir;                
-
-                i++;
+                data [i][0]=estIdP;
+                data [i][1]=estNumDoc;
+                data [i][2]=estNomP;
+                data [i][3]=estT;
+                                                             
+                i++;//retorna el ciclo hasta finalizar
                 
             }
             

@@ -621,7 +621,7 @@ public class frmPaciente extends javax.swing.JInternalFrame {
 
     private void tablaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPacientesMouseClicked
        fila= tablaPacientes.rowAtPoint(evt.getPoint());//obtiene el indice de la fila seleccionada
-       Date fecha = new Date();
+       
         if (fila>-1){
 
             /*colocamos en los campos del formulario, el valor correspondiente obtenido

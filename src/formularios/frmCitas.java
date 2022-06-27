@@ -797,15 +797,15 @@ public class frmCitas extends javax.swing.JInternalFrame {
             //para obtener la hora que el usuario seleccionó del grupo de opciones
             if(optH1.isSelected())
             {
-                hCita="8:00:00";
+                hCita="08:00:00";
             }
             else if(optH2.isSelected())
             {
-                hCita="8:30:00";
+                hCita="08:30:00";
             }
             else if(optH3.isSelected())
             {
-                hCita="9:00:00";
+                hCita="09:00:00";
             }
             else if(optH4.isSelected())
             {

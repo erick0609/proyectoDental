@@ -144,10 +144,13 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         txtDui = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtCiudad = new javax.swing.JTextField();
-        txtCelular = new javax.swing.JTextField();
+        txtProvincia = new javax.swing.JTextField();
+        txtDepartamento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
+        btnBuscarServicio1 = new javax.swing.JButton();
+        txtDistrito = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -703,7 +706,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -992,27 +995,27 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         txtDui.setBounds(140, 62, 170, 30);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setText("Ciudad:");
+        jLabel12.setText("Provincia:");
         jPanel19.add(jLabel12);
         jLabel12.setBounds(20, 224, 110, 30);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setText("Celular:");
+        jLabel13.setText("Dpto:");
         jPanel19.add(jLabel13);
-        jLabel13.setBounds(320, 256, 45, 30);
+        jLabel13.setBounds(320, 190, 34, 30);
 
-        txtCiudad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel19.add(txtCiudad);
-        txtCiudad.setBounds(140, 224, 170, 30);
+        txtProvincia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel19.add(txtProvincia);
+        txtProvincia.setBounds(140, 224, 170, 30);
 
-        txtCelular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCelular.addActionListener(new java.awt.event.ActionListener() {
+        txtDepartamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDepartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCelularActionPerformed(evt);
+                txtDepartamentoActionPerformed(evt);
             }
         });
-        jPanel19.add(txtCelular);
-        txtCelular.setBounds(370, 256, 180, 30);
+        jPanel19.add(txtDepartamento);
+        txtDepartamento.setBounds(370, 190, 180, 30);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Edad:");
@@ -1022,6 +1025,29 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         txtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel19.add(txtEdad);
         txtEdad.setBounds(140, 288, 170, 30);
+
+        btnBuscarServicio1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/16_search.png"))); // NOI18N
+        btnBuscarServicio1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBuscarServicio1MouseReleased(evt);
+            }
+        });
+        btnBuscarServicio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarServicio1ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnBuscarServicio1);
+        btnBuscarServicio1.setBounds(320, 30, 30, 30);
+
+        txtDistrito.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel19.add(txtDistrito);
+        txtDistrito.setBounds(370, 224, 180, 30);
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel29.setText("Dist:");
+        jPanel19.add(jLabel29);
+        jLabel29.setBounds(320, 224, 50, 30);
 
         jPanel1.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 570, 370));
 
@@ -1523,9 +1549,9 @@ public class frmConsultas extends javax.swing.JInternalFrame {
             txtNombrePacientes.setText(np);           
             txtDireccion.setText(dip);
             txtPais.setText(pa);
-            txtCiudad.setText(ci);
+            txtProvincia.setText(ci);
             txtTelefono.setText(tp);
-            txtCelular.setText(cp);        
+            txtDepartamento.setText(cp);        
             txtEdad.setText(ep);
             
             txtNumeroCita.setText(ic);// no se muestra en el formulario, pero es necesario para usos posteriores.
@@ -1539,6 +1565,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         fila = tablaPacientes.rowAtPoint(evt.getPoint());//se obtiene la posicion de la fila        
         String ip, dui = null, np = null, dip = null, pa = null, ci = null, tp = null, cp = null, ep = null;
+        String ds = null, pv= null;
         
         if (fila>-1)//Obtenemos el id del paciente
         {            
@@ -1549,20 +1576,28 @@ public class frmConsultas extends javax.swing.JInternalFrame {
             try
                 {            
                     PreparedStatement pstm=(PreparedStatement)
-                    con.getConnection().prepareStatement("SELECT * FROM paciente WHERE IdPaciente='"+ip+"'");
+                    con.getConnection().prepareStatement("SELECT * FROM paciente p "
+                            + "INNER JOIN distrito ds ON ds.codigoPostal = p.codigoDistrito "
+                            + "INNER JOIN provincia pv ON pv.idProvincia = ds.idProvincia "
+                            + "INNER JOIN departamento dp ON dp.idDepartamento = pv.idDepartamento "
+                            + "INNER JOIN pais ps ON ps.avPais = dp.avPais "
+                            + "INNER JOIN tipodocumento td ON td.idTipoDocumento = p.idTipoDocumento "
+                            + "WHERE IdPaciente='"+ip+"'");
                     ResultSet resul=pstm.executeQuery();          
 
                     //BUCLE PARA OBTENER LOS DATOS DEL PACIENTE
                     while (resul.next())
                     {
-                        dui = resul.getString("dui");
-                        np = resul.getString("nombres")+ " "+ resul.getString("apellidos");
+                        dui = resul.getString("numDocumento");
+                        np = resul.getString("nombres")+ " "+ resul.getString("aPaterno")+ " "+ resul.getString("aMaterno");
                         dip = resul.getString("direccion");
                         pa= resul.getString("pais");
-                        ci = resul.getString("ciudad");
-                        tp = resul.getString("telefono1");
-                        cp = resul.getString("telefono2");
-                        ep = resul.getString("edad");
+                        ci = resul.getString("departamento");
+                        tp = resul.getString("telefono");
+                        cp = resul.getString("telefono");
+                        ds = resul.getString("distrito");
+                        pv = resul.getString("provincia");
+                        ep = calcularEdad(resul.getString("fechaNacimiento"));
                     }
                     resul.close();
                 }
@@ -1577,9 +1612,10 @@ public class frmConsultas extends javax.swing.JInternalFrame {
             txtNombrePacientes.setText(np);           
             txtDireccion.setText(dip);
             txtPais.setText(pa);
-            txtCiudad.setText(ci);
-            txtTelefono.setText(tp);
-            txtCelular.setText(cp);        
+            txtProvincia.setText(pv);
+            txtDepartamento.setText(ci);
+            txtDistrito.setText(ds);
+            txtTelefono.setText(tp);       
             txtEdad.setText(ep);
             
             this.frmMostrarPacientes.dispose();
@@ -1588,6 +1624,33 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         }//fin del if  
     }//GEN-LAST:event_tablaPacientesMouseClicked
 
+    public static String calcularEdad(String fecha){
+       Date fechaNac=null;
+       try {
+           /**Se puede cambiar la mascara por el formato de la fecha 
+           que se quiera recibir, por ejemplo año mes día "yyyy-MM-dd"
+           en este caso es día mes año*/
+           fechaNac = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+       } catch (Exception ex) {
+           System.out.println("Error:"+ex);
+       }
+       Calendar fechaNacimiento = Calendar.getInstance();
+       //Se crea un objeto con la fecha actual
+       Calendar fechaActual = Calendar.getInstance();
+       //Se asigna la fecha recibida a la fecha de nacimiento.
+       fechaNacimiento.setTime(fechaNac);
+       //Se restan la fecha actual y la fecha de nacimiento
+       int año = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR);
+       int mes =fechaActual.get(Calendar.MONTH)- fechaNacimiento.get(Calendar.MONTH);
+       int dia = fechaActual.get(Calendar.DATE)- fechaNacimiento.get(Calendar.DATE);
+       //Se ajusta el año dependiendo el mes y el día
+       if(mes<0 || (mes==0 && dia<0)){
+           año--;
+       }
+       //Regresa la edad en base a la fecha de nacimiento
+       return ""+año;
+   }
+    
     private void tablaServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaServiciosMouseClicked
         // TODO add your handling code here:
         fila = tablaServicios.rowAtPoint(evt.getPoint());//se obtiene la posicion de la fila        
@@ -1708,9 +1771,9 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarReceta1ActionPerformed
 
-    private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
+    private void txtDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCelularActionPerformed
+    }//GEN-LAST:event_txtDepartamentoActionPerformed
 
     private void txtPrecioTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioTratamientoActionPerformed
         // TODO add your handling code here:
@@ -1824,6 +1887,15 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         updateTablaTratamientos();
     }//GEN-LAST:event_frmBuscarTratamientoWindowActivated
 
+    private void btnBuscarServicio1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarServicio1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarServicio1MouseReleased
+
+    private void btnBuscarServicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarServicio1ActionPerformed
+        // TODO add your handling code here:
+        frmMostrarPacientes.setVisible(true);
+    }//GEN-LAST:event_btnBuscarServicio1ActionPerformed
+
     //METODO PARA ACTUALIZAR LOS REGISTROS DE LA TABLA CITAS
     private void updateTablaCitas(){
          String[] columNames = {"N° Cita", "Cod. Paciente", "Nombre Paciente", "Fecha Cita", "Hora Cita"};
@@ -1845,12 +1917,21 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     
     //METODO PARA ACTUALIZAR LOS REGISTROS DE LA TABLA PACIENTES
     private void updateTablaPacientes(){
-           String[] columNames = {"Id Paciente", "Nombre Paciente"};
-         //usamos la funcion    
-          dtPacientes=consul.getDatosPacientes();
+           
+         String[] columNames = {"IdPaciente", "N° Documento", "Nombre", "Teléfono"};
+     //usamos la funcion
+        dtCitas = consul.getDatosPacientes();
 
-        // se colocan los datos en la tabla
-        DefaultTableModel datos= new DefaultTableModel(dtPacientes,columNames);
+    // se colocan los datos en la tabla
+        DefaultTableModel datos= new DefaultTableModel(dtCitas,columNames);
+        tablaPacientes.setModel(datos);
+        
+//        String[] columNames = {"Id Paciente", "Nombre Paciente"};
+//         //usamos la funcion    
+//          dtPacientes=consul.getDatosPacientes();
+//
+//        // se colocan los datos en la tabla
+//        DefaultTableModel datos= new DefaultTableModel(dtPacientes,columNames);
         tablaPacientes.setModel(datos);
         TableColumnModel columnModel = tablaPacientes.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
@@ -2455,9 +2536,9 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         txtNombrePacientes.setText("");
         txtDireccion.setText("");
         txtPais.setText("");
-        txtCiudad.setText("");
+        txtProvincia.setText("");
         txtTelefono.setText("");
-        txtCelular.setText("");
+        txtDepartamento.setText("");
         txtEdad.setText("");
         
         txtIdServicio.setText("");
@@ -2508,9 +2589,9 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         txtDui.setEditable(dui);
         txtDireccion.setEditable(dirp);
         txtPais.setEditable(pa);
-        txtCiudad.setEditable(ci);
+        txtProvincia.setEditable(ci);
         txtTelefono.setEditable(tp);
-        txtCelular.setEditable(cp);
+        txtDepartamento.setEditable(cp);
         txtEdad.setEditable(ep);
         
         txtIdServicio.setEditable(is);
@@ -2802,6 +2883,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregarMedicamento;
     private javax.swing.JButton btnBuscarEspecialista;
     private javax.swing.JButton btnBuscarServicio;
+    private javax.swing.JButton btnBuscarServicio1;
     private javax.swing.JButton btnBuscarTratamiento;
     private javax.swing.JButton btnGenerarReceta;
     private javax.swing.JButton btnGenerarReceta1;
@@ -2843,6 +2925,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2905,11 +2988,11 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablaRecetaMedica;
     private javax.swing.JTable tablaServicios;
     private javax.swing.JTable tablaTratamientos;
-    private javax.swing.JTextField txtCelular;
-    private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtCodigoMedicamento;
+    private javax.swing.JTextField txtDepartamento;
     private javax.swing.JTextArea txtDiagnostico;
     private javax.swing.JTextArea txtDireccion;
+    private javax.swing.JTextField txtDistrito;
     private javax.swing.JTextField txtDui;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtFecha;
@@ -2925,6 +3008,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNumeroCita;
     private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtPrecioTratamiento;
+    private javax.swing.JTextField txtProvincia;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTipoConsulta;
