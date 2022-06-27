@@ -229,7 +229,7 @@ public class consultas {
         }
         
         Object[][] data=new String [registros][3];
-                
+        
         //realizamos la consulta sql y llenamos los datos del Object
         
         try
@@ -240,18 +240,17 @@ public class consultas {
             
             int i=0;
             
-            while (res.next())//bucle que permite colocar los datos obtenidos de la consulta para mostrar en la tabla citasVencidas del frmGestionCitas
+            while (res.next())
             {
-                String is = res.getString("IdServicio");
-                String ns = res.getString("nombreServicio");
-                String ds= res.getString("descripcion");
-                                                                                                             
-                //llenamos la matriz con los valores encontrados de la consulta
-                data [i][0]=is;
-                data [i][1]=ns;
-                data [i][2]=ds;              
-
-                i++;
+                String estIdSer = res.getString("idServicio");
+                String estNomSer = res.getString("nomServicio");
+                String estDes = res.getString("descripcion");
+                                
+                data [i][0]=estIdSer;
+                data [i][1]=estNomSer;
+                data [i][2]=estDes;
+                                                             
+                i++;//retorna el ciclo hasta finalizar
                 
             }
             
@@ -272,7 +271,7 @@ public class consultas {
         try
         {
             PreparedStatement pstm=(PreparedStatement)
-            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamientos");//cuenta el total de registros de la tabla tratamientos
+            con.getConnection().prepareStatement("SELECT count(1) as total FROM tratamiento");//cuenta el total de registros de la tabla tratamientos
             ResultSet res=pstm.executeQuery();
             res.next();
             registros = res.getInt("total");
@@ -291,7 +290,7 @@ public class consultas {
         {
             PreparedStatement pstm=(PreparedStatement)
             //String sql = "SELECT * FROM tratamientos WHERE "+campo+" like ?";   
-            con.getConnection().prepareStatement("SELECT * FROM tratamientos WHERE IdServicio = '"+codSer+"' ORDER BY IdTratamiento");
+            con.getConnection().prepareStatement("SELECT * FROM tratamiento WHERE IdServicio = '"+codSer+"' ORDER BY IdTratamiento");
             ResultSet res=pstm.executeQuery();
             
             int i=0;
@@ -299,15 +298,13 @@ public class consultas {
             while (res.next())//Bucle para llenar la matriz de datos
             {
                 String iT = res.getString("IdTratamiento");
-                String nT = res.getString("nombreTratamiento");
                 String dT= res.getString("descripcion");
-                String tT= res.getString("tarifa");
+                String tT= res.getString("codTarifa");
                                                                                                              
                 //llenamos la matriz con los valores encontrados de la consulta
                 data [i][0]=iT;
-                data [i][1]=nT;
-                data [i][2]=dT;
-                data [i][3]=tT;              
+                data [i][1]=dT;
+                data [i][2]=tT;              
 
                 i++;
                 

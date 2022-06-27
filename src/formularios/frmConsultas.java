@@ -1464,7 +1464,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         obtenerFechaActual();
         citasVencidas();
-        updateTablaEspecialista();
+        updateTablaEspecialista(); 
         //updateTablaTratamientos();
         updateTablaServicios();
         updateTablaCitas();
@@ -1953,7 +1953,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
     //METODO PARA ACTUALIZAR LOS REGISTROS DE LA TABLA TRATAMIENTOS
     private void updateTablaTratamientos(){
         String codServicio = txtIdServicio.getText();
-        String[] columNames = {"Id Tratamiento","Nombre", "Descripcion", "Precio Tratamiento"};
+        String[] columNames = {"Id Tratamiento","Nombre","Precio Tratamiento"};
          //usamos la funcion    
           dtTratamientos = consul.getDatosTratamientos(codServicio);
 
