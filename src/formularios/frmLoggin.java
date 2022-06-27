@@ -4,6 +4,7 @@ package formularios;
 import clases.bdConexion;
 import clases.loggin;
 import formularios.frmPrincipal;
+import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,6 +72,11 @@ public class frmLoggin extends javax.swing.JFrame {
 
         txtNombreUsuario.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtNombreUsuario.setForeground(new java.awt.Color(0, 51, 255));
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 136, 35));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -111,6 +117,11 @@ public class frmLoggin extends javax.swing.JFrame {
                 txtContraseniaActionPerformed(evt);
             }
         });
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 158, 136, 35));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/96_users.png"))); // NOI18N
@@ -123,11 +134,11 @@ public class frmLoggin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -152,6 +163,27 @@ public class frmLoggin extends javax.swing.JFrame {
     private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraseniaActionPerformed
+
+    private void txtNombreUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtContrasenia.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreUsuarioKeyReleased
+
+    private void txtContraseniaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyReleased
+        // TODO add your handling code here:
+        try {
+            // acceso al sistema
+            if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+                accesoAlSistema();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(frmLoggin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(frmLoggin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtContraseniaKeyReleased
 
     /**
      * @param args the command line arguments
