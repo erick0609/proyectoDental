@@ -1682,6 +1682,7 @@ public class frmConsultas extends javax.swing.JInternalFrame {
             it =(String) tablaTratamientos.getValueAt(tablaTratamientos.getSelectedRow(), 0);//id del tratamiento
             nt =(String) tablaTratamientos.getValueAt(tablaTratamientos.getSelectedRow(), 1);//nombre del tratamiento
             tt =(String) tablaTratamientos.getValueAt(tablaTratamientos.getSelectedRow(), 2);//valor del tratamiento
+            
                         
             
             //para finalizar colocamos los datos en los campos correspondiente del formulario            
