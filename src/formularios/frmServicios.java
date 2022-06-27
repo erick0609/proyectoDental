@@ -228,7 +228,7 @@ public class frmServicios extends javax.swing.JInternalFrame {
             }
         });
         panelPacientes.add(txtNombreServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 410, 25));
-        panelPacientes.add(txtModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        panelPacientes.add(txtModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 20, 10, -1));
 
         txtDescripcionServicio.setColumns(1);
         txtDescripcionServicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
