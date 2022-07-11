@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_exp_clinico_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5833825b-0b2b-40cc-9ec2-1cb25307819d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idTratamiento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{idTratamiento}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tr.descripcion as Tratamiento, CONCAT(srv.nomServicio,', ',srv.descripcion) servicio,CONCAT(esp.nombres,', ',esp.aPaterno,' ',esp.aMaterno)especialista, trf.monto FROM tratamiento tr INNER JOIN servicios srv ON srv.idServicio = tr.idServicio INNER JOIN especialistas esp ON esp.idEspecialista = srv.idEspecialista INNER JOIN tarifa trf ON trf.codTarifa = tr.codTarifa WHERE tr.idTratamiento = $P{idTratamiento}]]>
+	</queryString>
+	<field name="Tratamiento" class="java.lang.String"/>
+	<field name="servicio" class="java.lang.String"/>
+	<field name="especialista" class="java.lang.String"/>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="20" forecolor="#0033FF" uuid="ad5dcf66-0d21-4d44-b1b4-d03e484df905"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tratamiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="30" width="100" height="20" forecolor="#0033FF" uuid="8a62eaf6-892b-4e02-bb65-141f0db678bc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="30" width="100" height="20" forecolor="#0033FF" uuid="3f7d1c3b-cc20-4e16-83a0-7d4b63a3d43f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[especialista]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="192" height="37" uuid="ce9bb05f-54fb-4823-aa9a-a60a2f598673"/>
+				<textFieldExpression><![CDATA[$F{Tratamiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="176" height="37" uuid="dc3d31d4-787c-4d29-bd8a-8a8f77a4b470"/>
+				<textFieldExpression><![CDATA[$F{especialista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="0" width="187" height="37" uuid="b7e9a4e3-1b79-4073-a585-97032a3546ba"/>
+				<textFieldExpression><![CDATA[$F{servicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="339" y="37" width="115" height="35" uuid="7552d3b7-75da-4345-8fd8-226e86d852bf"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="37" width="100" height="35" forecolor="#FF0033" uuid="82d01723-eeea-44e9-a120-44ed7a7f3b5d"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
